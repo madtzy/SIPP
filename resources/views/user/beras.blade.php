@@ -15,13 +15,11 @@
                 <img class="img-fluid img-corousel" src="/img/1.jpg" alt="">
                 <div class="owl-carousel-inner">
                     <div class="container">
-                        <div class="row justify-content-start">
-                            <div class="col-10 col-lg-8">
-                                <h4 class="display-3 text-white animated slideInDown">UD. MAJU MAKMUR</h4>
-                                <p class="fs-5 fw-medium text-white">Merupakan Toko yang bergerak di bidang
-                                    penjualan beras</p>
-                                <p class="fs-5 fw-medium text-white">yang berada di jalan Dadirejo 07/02 Penggaron Mojowarno.</p>
-                                <a href="#produk" class="btn btn-primary rounded-pill py-3 px-5 animated slideInLeft">Lihat Produk</a>
+                        <div class="row">
+                            <div class="col-10 col-lg-8 align-content-center">
+                                <p class="text-white judul">UD. MAJU MAKMUR</p>
+                                <p class="text-white deskripsi">Merupakan Toko yang bergerak di bidang penjualan beras yang berada di jalan Dadirejo 07/02 Penggaron Mojowarno.</p>
+                                <a href="#produk" class="btn btn-primary rounded-pill py-2 px-5 list">List</a>
                             </div>
                         </div>
                     </div>
@@ -40,7 +38,7 @@
         <div class="col-md-6 mb-4 ">
             <form action="/">
                 <div class="input-group">
-                    <input type="text" class="form-control" name="search" placeholder="Search"
+                    <input type="text" class="form-control" name="search" placeholder="Masukkan Produk"
                         value="{{ request('search') }}">
                     <button class="btn btn-warning" type="submit">Search</button>
                 </div>
@@ -51,13 +49,13 @@
         <div class="container">
             <div class="row justify-content-center">
                 @foreach ($beras as $b)
-                    <div class="col-md-3 mt-3 mb-3">
+                    <div class="col-md-6 col-lg-4 col-xl-3 mt-3 mb-3">
                         <div class="card">
                             <img src="https://source.unsplash.com/1200x800?" class="card-img-top gambar" alt="...">
                             <div class="card-body text-center">
                                 <h5 class="card-title">{{ $b->nama }}</h5>
-                                <span class="badge bg-secondary">Rp. {{ $b->harga }}</span>
-                                <span class="badge bg-secondary">{{ $b->berat }} Kg</span>
+                                <span class="badge badge-sm bg-secondary">Rp. {{ $b->harga }}</span>
+                                <span class="badge badge-sm bg-secondary">{{ $b->berat }} Kg</span>
                                 <div class="mt-3">
                                     <a href="#" class="btn-sm btn-primary text-decoration-none">Beli</a>
                                     <a href="/{{ $b->id }}" class="btn-sm btn-success text-decoration-none"
@@ -87,9 +85,9 @@
                                         <div class="col-md-8">
                                             <h6>Nama : {{ $be->nama }}</h6>
                                             <h6>Harga : {{ $be->harga }}</h6>
-                                            <h6>Berat : {{ $be->berat }}</h6>
+                                            <h6>Berat : {{ $be->berat }} Kg</h6>
                                             <h6>Kualitas : {{ $be->kualitas }}</h6>
-                                            <h6>Persediaan : {{ $be->persediaan }}</h6>
+                                            <h6>Persediaan : {{ $be->persediaan }} Karung</h6>
                                         </div>
                                     </div>
                                 </div>

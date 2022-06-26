@@ -11,7 +11,7 @@ class BerasController extends Controller
     {
         return view('user.beras', [
             'title' => 'All Produk',
-            'beras' => Beras::latest()->filter(request(['search']))->paginate(8)->withQueryString()
+            'beras' => Beras::latest()->filter(request(['search']))->paginate(12)->withQueryString()
         ]);
     }
 }

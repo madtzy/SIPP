@@ -14,11 +14,11 @@ class BerasFactory extends Factory
     public function definition()
     {
         return [
-            'nama' => $this->faker->unique()->name(),
+            'nama' => $this->faker->unique()->firstName(),
             'harga' => $this->faker->randomNumber(6, true),
             'berat' => $this->faker->numberBetween(25,25),
             'kualitas' => $this->faker->word(3),
-            'persediaan' => $this->faker->numberBetween(40,100)
+            'persediaan' => $this->faker->numberBetween(20,60)
         ];
     }
 }

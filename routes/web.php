@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerasController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\RegisterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,4 +15,17 @@ use App\Http\Controllers\BerasController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', [BerasController::class, 'index']);
+
+Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
+
+Route::post('/login', [LoginController::class, 'authenticate']);
+
+Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
+
+Route::post('/register', [RegisterController::class, 'daftar']);
+
+Route::get('/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('auth');
