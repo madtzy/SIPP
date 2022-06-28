@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BerasController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +17,7 @@ use App\Http\Controllers\RegisterController;
 |
 */
 
-Route::get('/', [BerasController::class, 'index']);
+Route::get('/', [BerasController::class, 'index'])->middleware('guest');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
@@ -26,6 +27,6 @@ Route::get('/register', [RegisterController::class, 'index'])->middleware('guest
 
 Route::post('/register', [RegisterController::class, 'daftar']);
 
-Route::get('/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware('auth');
+Route::post('/logout', [LoginController::class, 'logout']);
+
+Route::get('/admin/dashboard', [DashboardController::class, 'index'])->middleware('auth');

@@ -19,7 +19,7 @@
                             <div class="col-10 col-lg-8 align-content-center">
                                 <p class="text-white judul">UD. MAJU MAKMUR</p>
                                 <p class="text-white deskripsi">Merupakan Toko yang bergerak di bidang penjualan beras yang berada di jalan Dadirejo 07/02 Penggaron Mojowarno.</p>
-                                <a href="#produk" class="btn btn-primary rounded-pill py-2 px-5 list">List</a>
+                                <a href="#produk" class="btn btn-primary rounded-pill border-0 py-2 px-5 btn-list">List</a>
                             </div>
                         </div>
                     </div>
@@ -33,7 +33,7 @@
             </div>
         </div>
     </div>
-    <h4 class="text-center mt-4 mb-4" id="produk">PRODUK</h4>
+    <h5 class="text-center mt-4 mb-4" id="produk">PRODUK</h5>
     <div class="row justify-content-center">
         <div class="col-md-6 mb-4 ">
             <form action="/">

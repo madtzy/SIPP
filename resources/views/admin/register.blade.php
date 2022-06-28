@@ -13,8 +13,6 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!--===============================================================================================-->
-    <link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
-    <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/fonts/Linearicons-Free-v1.0.0/icon-font.min.css">
     <!--===============================================================================================-->
     <link rel="stylesheet" type="text/css" href="/vendor/animate/animate.css">
@@ -82,7 +80,7 @@
                     </div>
 
                     <p class="text-danger text-center mt-3">
-                        Belum Punya Akun?<a href="/register" class="text-danger"> Register</a>
+                        Sudah Punya Akun?<a href="/login" class="text-danger text-decoration-none"> Login</a>
                     </p>
                 </form>
             </div>

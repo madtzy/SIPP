@@ -1,0 +1,213 @@
+/*===== GOOGLE FONTS =====*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap");
+
+
+/*===== VARIABLES CSS =====*/
+:root {
+	--header-height: 3rem;
+	--nav-width: 70px;
+
+	/*===== Colors =====*/
+	--first-color: #000000;
+	--first-color-light: #ffffff;
+	--white-color: #ffffff;
+	--yellow-color: #b9bb4f;
+
+	/*===== Font and typography =====*/
+	--body-font: 'Nunito', sans-serif;
+	--normal-font-size: 1rem;
+
+	/*===== z index =====*/
+	--z-fixed: 100;
+}
+
+/*===== BASE =====*/
+*,
+::before,
+::after {
+	box-sizing: border-box;
+}
+
+body {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	margin: var(--header-height) 0 0 0;
+	padding: 0 1rem;
+	font-family: var(--body-font);
+	transition: .5s;
+}
+
+.margin{
+	margin-top: 80px;
+}
+
+a {
+	text-decoration: none !important;
+}
+
+/*===== HEADER =====*/
+.header {
+	width: 100%;
+	height: var(--header-height);
+	position: fixed;
+	top: 0;
+	left: 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 0 1rem;
+	background-color: var(--white-color);
+	z-index: var(--z-fixed);
+	transition: .5s;
+}
+
+.header__toggle {
+	color: var(--first-color);
+	font-size: 1.5rem;
+	cursor: pointer;
+}
+
+/*===== NAV =====*/
+.l-navbar {
+	position: fixed;
+	top: 0px;
+	left: -30%;
+	width: var(--nav-width);
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+	background-color: var(--first-color);
+	padding: .5rem 1rem 0 0;
+	transition: .5s;
+	overflow: hidden;
+	z-index: var(--z-fixed);
+}
+
+.nav {
+	position: relative;
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	overflow: hidden;
+}
+.logo{
+        width: 30px;
+		margin-right: 10px;
+    }
+.backgorund_logo{
+	position: relative;
+	background: var(--white-color);
+	width: 100%;
+	margin-top: 20px;
+	border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px;
+}
+
+.nav__logo,
+.nav__link {
+	display: grid;
+	grid-template-columns: max-content;
+	align-items: center;
+	column-gap: 1rem;
+	padding: .5rem 0 .5rem 1.5rem;
+}
+.nav__logo {
+	margin-bottom: 2rem;
+}
+
+.nav__link {
+	position: relative;
+	color: var(--first-color-light);
+	margin-bottom: 1rem;
+	transition: .3s;
+}
+.nav__link:hover {
+	background-color: rgb(22, 22, 22);
+	transition: .3s;
+}
+.nav__icon {
+	font-size: 1.7rem;
+}
+.bg-dropdown{
+	background-color: rgb(22, 22, 22);
+}
+.dropdown-item:hover {
+	background-color:black !important;
+}
+
+/*Show navbar movil*/
+.show {
+	left: 0;
+}
+
+/*Add padding body movil*/
+.body-pd {
+	padding-left: calc(var(--nav-width) + 1rem);
+}
+
+/*Active links*/
+.active {
+	color: var(--white-color);
+}
+
+.active::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	width: 2px;
+	height: 32px;
+	background-color: var(--white-color);
+}
+
+/* ===== MEDIA QUERIES=====*/
+@media (min-width: 768px) {
+	body {
+		margin: calc(var(--header-height) + 1rem) 0 0 0;
+		padding-left: calc(var(--nav-width) + 2rem);
+	}
+
+	.header {
+		height: calc(var(--header-height) + 1rem);
+		padding: 0 2rem 0 calc(var(--nav-width) + 2rem);
+	}
+
+	.l-navbar {
+		left: 0;
+		height: 100vh !important;
+		padding: 1rem 1rem 0 0;
+	}
+
+	.btn-logout{
+	background-color: none;
+	margin-left: 10px;
+	margin-bottom: 30px;
+	}
+
+	/*Show navbar desktop*/
+	.show {
+		width: calc(var(--nav-width) + 156px);
+	}
+
+	/*Add padding body desktop*/
+	.body-pd {
+		padding-left: calc(var(--nav-width) + 188px);
+	}
+}
+
+@media (min-width: 320px){
+	/* sidebar */
+	.l-navbar {
+		height: 95vh;
+	}
+	.btn-logout{
+	background-color: none;
+	margin-left: 15px;
+	margin-bottom: 45px;
+	}
+	/* footer */
+	.copyright,
+	.welcome{
+		font-size: 12px;
+	}
+}

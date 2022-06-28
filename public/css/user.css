@@ -18,14 +18,12 @@ body{
 }
 
 /* navar */
-nav div a{
+.sipp{
     font-family: 'Emblema One', cursive;
-}
+    font-size: 30px;
+    }
 .logo{
         width: 55px;
-    }
-    .nav{
-        font-size: 30px;
     }
 .bg-nav{
     background-color: rgba(200, 200, 200, 0.5);
@@ -40,6 +38,16 @@ nav div a{
 }
 .img-corousel{
     height: 100vh;
+}
+.btn-list {
+	border-image-source: linear-gradient(to right, #00396b, #0088ff);
+	box-shadow: 5px 5px 0px 0px #004da4;
+}
+
+.btn-list:hover {
+	box-shadow: none;
+	padding: 10px 30px;
+	transform: translate(5px, 5px);
 }
 .owl-carousel-inner {
     position: absolute;
@@ -91,11 +99,21 @@ nav div a{
 }
 
 /* card image */
+.card:hover {
+	border: 10px solid;
+	transform: scale(1.01);
+	border-image-slice: 1;
+	border-width: 2px;
+	border-image-source: linear-gradient(to right, #00396b, #0088ff);
+	box-shadow: 5px 5px 0px 0px #004da4;
+}
 .card{
     overflow: hidden;
+    border-radius: 0;
+	border: 2px solid rgb(255, 255, 255);
 }
 .gambar:hover{
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 /* back */
 .back-to-top {
@@ -111,9 +129,6 @@ nav div a{
     .logo{
         width: 40px;
     }
-    .nav{
-        font-size: 22px;
-    }
     .judul{
         font-size: 30px;
         margin-bottom: 0px;
@@ -124,9 +139,12 @@ nav div a{
     
 }
 /* tablet */
-@media (max-width: 834px) {
-    .nav{
-        font-size: 18px;
+@media (max-width: 835px) {
+    .logo{
+        width: 35px;
+    }
+    .sipp{
+    font-size: 25px;
     }
     .judul{
         font-size: 24px;
@@ -151,8 +169,8 @@ nav div a{
 }
 /* HP */
 @media (max-width: 425px){
-    .nav{
-        font-size: 14px;
+    .sipp{
+    font-size: 14px;
     }
     .judul{
         font-size: 16px !important;
