@@ -10,11 +10,14 @@
                 <a href="/admin/dashboard" class="nav__link text-white {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
                     <span class="nav__name fs-6"><i class="bx bx-sm bxs-dashboard me-3"></i>Dashboard</span>
                 </a>
-                <a href="/admin/beras" class="nav__link text-white {{ Request::is('admin/beras*') ? 'active' : '' }}">
-                    <span class="nav__name fs-6"><i class='bx bx-sm bxs-bowl-rice me-3'></i>Data Beras</span>
+                <a href="/admin/produks" class="nav__link text-white {{ Request::is('admin/produks*') ? 'active' : '' }}">
+                    <span class="nav__name fs-6"><i class='bx bx-sm bxs-bowl-rice me-3'></i>Data Produk</span>
                 </a>
-                <a href="/admin/penjualan" class="nav__link text-white {{ Request::is('admin/penjualan*') ? 'active' : '' }}">
-                    <span class="nav__name fs-6"><i class='bx bx-sm bx-money-withdraw me-3'></i>Data Penjualan</span>
+                <a href="/admin/stoks" class="nav__link text-white {{ Request::is('admin/stoks*') ? 'active' : '' }}">
+                    <span class="nav__name fs-6"><i class='bx bx-sm bxs-customize me-3'></i>Data Stok</span>
+                </a>
+                <a href="/admin/buyers" class="nav__link text-white {{ Request::is('admin/buyers*') ? 'active' : '' }}">
+                    <span class="nav__name fs-6"><i class='bx bx-sm bx-money-withdraw me-3'></i>Data Pemesan</span>
                 </a>
                 <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/prediksi*') ? 'active' : '' }}" data-bs-toggle="collapse" data-bs-target="#collapse"
                     aria-expanded="false" aria-controls="collapse">
@@ -31,15 +34,10 @@
                         <a class="dropdown-item text-white ms-5" href="/admin/prediksi/bulanan"></i>Bulanan</a>
                     </div>
                 </div>
+                <a href="/admin/kasir" class="nav__link text-white {{ Request::is('admin/kasir*') ? 'active' : '' }}">
+                    <span class="nav__name fs-6"><i class='bx bx-sm bxs-user-plus me-3'></i></i>Data Kasir</span>
+                </a>
             </div>
-            <li class="fixed-bottom">
-                <form action="/logout" method="post">
-                    @csrf
-                    <button class="btn text-white btn-logout">
-                        <i class='bx bx-sm bx-left-arrow-circle me-3'></i>Logout
-                    </button>
-                </form>
-            </li>
         </div>
     </nav>
 </div>

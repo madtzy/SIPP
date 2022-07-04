@@ -40,18 +40,18 @@
                 </span>
                 <form class="login100-form validate-form p-b-33 p-t-5" action="/register" method="post">
                     @csrf
-                    <div class="wrap-input100 validate-input" data-validate="Enter name">
-                        <input class="input100 @error('name') is-invalid @enderror" type="text" name="name"
-                            placeholder="Name" value="{{ old('name') }}" required>
+                    <div class="wrap-input100 validate-input" data-validate="Masukkan name">
+                        <input class="input100 @error('nama') is-invalid @enderror" type="text" name="nama"
+                            placeholder="Nama" value="{{ old('nama') }}" required>
                         <span class="focus-input100" data-placeholder="&#xe82a;"></span>
-                        @error('name')
+                        @error('nama')
                             <div class="invalid-feedback text-center">
                                 {{ $message }}
                             </div>
                         @enderror
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter username">
+                    <div class="wrap-input100 validate-input" data-validate="Masukkan username">
                         <input class="input100 @error('username') is-invalid @enderror" type="text" name="username"
                             placeholder="Username" value="{{ old('username') }}" required>
                         <span class="focus-input100" data-placeholder="&#xe82a;"></span>
@@ -62,7 +62,7 @@
                         @enderror
                     </div>
 
-                    <div class="wrap-input100 validate-input" data-validate="Enter password">
+                    <div class="wrap-input100 validate-input" data-validate="Masukkan password">
                         <input class="input100 @error('password') is-invalid @enderror" type="password" name="password"
                             placeholder="Password" required>
                         <span class="focus-input100" data-placeholder="&#xe80f;"></span>
@@ -73,7 +73,7 @@
                         @enderror
                     </div>
 
-                    <div class="container-login100-form-btn m-t-32">
+                    <div class="container-login100-form-btn">
                         <button class="login100-form-btn">
                             Register
                         </button>

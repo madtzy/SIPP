@@ -9,17 +9,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <!-- font awesome -->
-    <link rel="stylesheet" type="text/css" href="/fonts/fontawesome-6.0.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="/css/admin.css">
-    <!-- data tables -->
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css"
-        href="https://cdn.datatables.net/buttons/1.7.1/css/buttons.bootstrap5.min.css">
+    {{-- PRIMARY --}}
+    {{-- Ajax --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+    {{-- Datatables --}}
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    {{-- EXTENSION --}}
+    {{-- Button --}}
+    <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css" rel="stylesheet">
     <!-- box icon -->
-    {{-- <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'> --}}
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
     <title>Admin</title>
 </head>
@@ -29,13 +30,23 @@
         <div class="header__toggle">
             <i class='bx bx-menu' id="header-toggle"></i>
         </div>
-        <div class="welcome">Welcome, {{ auth()->user()->name }}</div>
-    </header>
-            @include('admin.layouts.sidebar')
-            <div class="margin">
-                @yield('content')
+        <div class="welcome ms-auto">Welcome, {{ auth()->user()->nama }}</div>
+        <div class="navbar-nav">
+            <div class="nav-item text-nowrap">
+                <form action="/logout" method="post">
+                    @csrf
+                    <button class="nav-link bg-light border-0 ms-3 py-0"><i
+                            class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </button>
+                </form>
             </div>
-            @include('admin.layouts.footer')
+        </div>
+    </header>
+    @include('admin.layouts.sidebar')
+    <div class="margin">
+        @yield('content')
+    </div>
+    @include('admin.layouts.footer')
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
@@ -43,45 +54,60 @@
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
         integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
     </script> -->
-    <!-- umkm -->
     <script src="/js/admin.js"></script>
-    <!-- data tables -->
+
+    {{-- PRIMARY --}}
+
+    {{-- JQuery --}}
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.bootstrap5.min.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    {{-- Datatables --}}
+    <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
+
+    {{-- EXTENSION --}}
+    {{-- Button --}}
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/1.7.1/js/buttons.colVis.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+    {{-- Stok Otomatis --}}
+    <script type="text/javascript">
+        $(".stok").keyup(function() {
+            var stok_sebelumnya = parseInt($("#stok_sebelumnya").val())
+            var stok_tambah = parseInt($("#stok_tambah").val())
+
+            var stok_akhir = stok_sebelumnya + stok_tambah;
+            $("#stok_akhir").attr("value", stok_akhir)
+        })
+    </script>
     <script>
         $(document).ready(function() {
-            $('#table').DataTable({
-                "sScrollY": ($(window).height() - 420),
-                dom: 'Bfrtip',
+            var table = $('#table').DataTable({
+                lengthChange: false,
                 buttons: [{
                         extend: 'print',
+                        title: 'Data Produk',
+                        text: '<i class="fa-solid fa-print"></i>',
                         exportOptions: {
                             columns: ':visible'
                         }
                     },
                     {
                         extend: 'pdf',
+                        title: 'Data Produk',
+                        text: '<i class="fa-solid fa-file-pdf"></i>',
                         exportOptions: {
                             columns: ':visible'
                         }
                     },
                     {
                         extend: 'excel',
-                        exportOptions: {
-                            columns: ':visible'
-                        }
-                    },
-                    {
-                        extend: 'csv',
+                        title: 'Data Produk',
+                        text: '<i class="fa-solid fa-file-excel"></i>',
                         exportOptions: {
                             columns: ':visible'
                         }
@@ -92,9 +118,22 @@
                     targets: -1,
                     visible: true
                 }],
+                language: {
+                    emptyTable: "Data tidak tersedia",
+                    info: "_START_ sampai _END_ dari _TOTAL_ total data",
+                    search: "Cari:",
+                    loadingRecords: "Tunggu sebentar...",
+                    processing: "Memproses...",
+                    paginate: {
+                        "first": "First",
+                        "last": "Last",
+                        "next": ">",
+                        "previous": "<"
+                    },
+                }
             });
             table.buttons().container()
-                .appendTo('#example_wrapper .col-md-6:eq(0)');
+                .appendTo('#table_wrapper .col-md-6:eq(0)');
         });
     </script>
 </body>

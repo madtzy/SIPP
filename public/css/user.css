@@ -16,7 +16,10 @@ body{
     visibility: visible;
     opacity: 1;
 }
-
+/* form pembelian */
+.margin{
+    margin-top: 80px;
+}
 /* navar */
 .sipp{
     font-family: 'Emblema One', cursive;
@@ -119,8 +122,8 @@ body{
 .back-to-top {
     position: fixed;
     display: none;
-    right: 45px;
-    bottom: 45px;
+    right: 25px;
+    bottom: 40px;
     z-index: 99;
 }
 /* Responsif */

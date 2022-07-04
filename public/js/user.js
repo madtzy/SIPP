@@ -19,7 +19,7 @@
 
     // Sticky Navbar
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
+        if ($(this).scrollTop() > 600) {
             $('.sticky-top').addClass('shadow-sm').css('top', '0px');
         } else {
             $('.sticky-top').removeClass('shadow-sm').css('top', '-100px');
@@ -29,7 +29,7 @@
     
     // Back to top button
     $(window).scroll(function () {
-        if ($(this).scrollTop() > 300) {
+        if ($(this).scrollTop() > 600) {
             $('.back-to-top').fadeIn('slow');
         } else {
             $('.back-to-top').fadeOut('slow');

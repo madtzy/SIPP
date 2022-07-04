@@ -15,13 +15,13 @@ class RegisterController extends Controller
         ]);
     }
 
-    public function daftar(Request $request)
+    public function store(Request $request)
     {
         $validatedData = $request->validate(
             [
-                'name' => 'required|min:8',
-                'username' => 'required|min:8|max:255|unique:users',
-                'password' => 'required|min:8|max:255'
+                'nama' => 'required|min:6',
+                'username' => 'required|min:6|max:255|unique:users',
+                'password' => 'required|min:6|max:255'
             ]
         );
 
@@ -30,6 +30,6 @@ class RegisterController extends Controller
         $validatedData['password'] = Hash::make($validatedData['password']);
         User::create($validatedData);
         // $request->session()->flash('success', 'Registration Succeccfull! Please Login');
-        return redirect('/login')->with('success', 'Registration Successfull! Please Login');
+        return redirect('/login')->with('success', 'Registration Berhasil! Silahkan Login');
     }
 }
