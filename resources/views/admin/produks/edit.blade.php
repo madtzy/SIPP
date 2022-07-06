@@ -44,18 +44,22 @@
                 </div>
             @enderror
         </div>
-        {{-- <div class="mb-2">
-            <label for="image" class="form-label">Post Image</label>
-            <img class="img-preview img-fluid mb-3 col-sm-5">
-            <input class="form-control @error('image') is-invalid @enderror" type="file" id="image" name="image"
-                value="{{ old('image') }}" onchange="previewImage()">
-            @error('image')
-                <div class="invalid-feedback">
-                    {{ $message }}
-                </div>
-            @enderror
-        </div> --}}
+        <div class="mb-2">
+                <label for="gambar" class="form-label">Gambar</label>
+                <input type="hidden" name="oldGambar" value="{{ $produk->gambar }}">
+                @if ($produk->gambar)
+                    <img src="{{ asset('storage/' . $produk->gambar) }}" class="img-preview img-fluid mb-3 col-sm-1 d-block">
+                @endif
+                <input class="form-control @error('gambar') is-invalid @enderror" type="file" id="gambar" name="gambar"
+                    value="{{ old('gambar') }}" onchange="previewGambar()">
+                @error('gambar')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
         <button type="submit" class="btn btn-primary">Simpan</button>
         <a href="/admin/produks" class="btn btn-danger">Kembali</a>
     </form>
+    @include('admin.produks.previewGambar')
 @endsection

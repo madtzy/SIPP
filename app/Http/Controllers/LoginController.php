@@ -18,8 +18,8 @@ class LoginController extends Controller
     public function authenticate(Request $request)
     {
         $credentials = $request->validate([
-            'username' => 'required|min:6|max:255',
-            'password' => 'required|min:6|max:255'
+            'username' => 'required|min:5|alpha_num',
+            'password' => 'required|min:5|alpha_num'
         ]);
 
         if (Auth::attempt($credentials)) {
@@ -27,17 +27,14 @@ class LoginController extends Controller
             return redirect()->intended('/admin/dashboard');
         }
         // dd('Berhasil Login'); 
-        return back()->with('loginError', 'Login Gagal!');
+        return back()->with('loginError', 'Username atau Password Salah');
     }
 
     public function logout()
     {
         Auth::logout();
-
         request()->session()->invalidate();
-
         request()->session()->regenerateToken();
-
         return redirect('/login');
     }
 }

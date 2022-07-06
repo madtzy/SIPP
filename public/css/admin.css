@@ -4,11 +4,11 @@
 
 /*===== VARIABLES CSS =====*/
 :root {
-	--header-height: 3rem;
+	--header-height: 2.5rem;
 	--nav-width: 70px;
 
 	/*===== Colors =====*/
-	--first-color: #000000;
+	--first-color: #252525;
 	--first-color-light: #ffffff;
 	--white-color: #ffffff;
 	--yellow-color: #b9bb4f;
@@ -39,7 +39,7 @@ body {
 }
 
 .margin{
-	margin-top: 80px;
+	margin-top: 70px;
 }
 
 a {
@@ -57,7 +57,6 @@ a {
 	align-items: center;
 	justify-content: space-between;
 	padding: 0 1rem;
-	background-color: var(--white-color);
 	z-index: var(--z-fixed);
 	transition: .5s;
 }
@@ -74,8 +73,8 @@ a {
 	top: 0px;
 	left: -30%;
 	width: var(--nav-width);
-	border-top-right-radius: 10px;
-	border-bottom-right-radius: 10px;
+	/* border-top-right-radius: 10px;
+	border-bottom-right-radius: 10px; */
 	background-color: var(--first-color);
 	padding: .5rem 1rem 0 0;
 	transition: .5s;
@@ -136,6 +135,13 @@ a {
 	background-color:black !important;
 }
 
+.gambar{
+    width: 210px;
+    height: 200px;
+	margin-left: 10px;
+	margin-top: 5px;
+	align-self: center;
+}
 /*Show navbar movil*/
 .show {
 	left: 0;
@@ -193,6 +199,10 @@ a {
 	.body-pd {
 		padding-left: calc(var(--nav-width) + 188px);
 	}
+	.copyright,
+	.welcome{
+		font-size: 16px !important;
+	}
 }
 
 @media (min-width: 320px){
@@ -205,7 +215,6 @@ a {
 	margin-left: 15px;
 	margin-bottom: 45px;
 	}
-	/* footer */
 	.copyright,
 	.welcome{
 		font-size: 12px;

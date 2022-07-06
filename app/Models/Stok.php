@@ -11,6 +11,6 @@ class Stok extends Model
     protected $guarded = ['id'];
     public function produk()
     {
-        return $this->belongsTo(Produk::class);
+        return $this->belongsTo(Produk::class, 'produk_id');
     }
 }

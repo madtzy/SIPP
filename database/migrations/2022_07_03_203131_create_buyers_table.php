@@ -18,7 +18,7 @@ class CreateBuyersTable extends Migration
             $table->foreignId('produk_id');
             $table->string('nama');
             $table->string('alamat');
-            $table->integer('nomor_telp');
+            $table->string('nomor_telp');
             $table->date('tanggal');
             $table->integer('jumlah');
             $table->integer('total_bayar');
