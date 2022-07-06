@@ -95,7 +95,7 @@ class AdminProdukController extends Controller
             'harga'         => 'required',
             'stok'          => 'required',
             'keterangan'    => 'required|max:255',
-            'gambar'        => 'required|image|file|max:1024'
+            'gambar'        => 'image|file|max:1024'
         ];
         //cek apakah ada nama baru?
         if ($request->nama != $produk->nama) {

@@ -14,25 +14,12 @@ class BuyerController extends Controller
         return view('user.form_pembelian', [
             'title' => 'Form Pembelian',
             'produk' => $produk
-            // 'produks' => Produk::all()
         ]);
     }
     public function store(Request $request)
     {
-        $nama = $request('nama');
-        $alamat = $request('alamat');
-        $tanggal = $request('tanggal');
-        $produk = $request('nama_');
-        $nama = $request('nama');
-        $nama = $request('nama');
-        $nama = $request('nama');
-        $data = array(
-            'nama' => $nama,
-
-        );
         $validatedData = $request->validate([
             'produk_id'     => 'required',
-            'nama_produk'   => 'required',
             'nama'          => 'required|max:255',
             'alamat'        => 'required|max:255',
             'nomor_telp'    => 'required',

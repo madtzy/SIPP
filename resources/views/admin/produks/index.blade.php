@@ -83,7 +83,7 @@
                                         <tr>
                                             <td>Stok</td>
                                             <td>:</td>
-                                            <td>{{ $produk->stok }} Kg</td>
+                                            <td>{{ $produk->stok }} Karung</td>
                                         </tr>
                                         <tr>
                                             <td class="d-inline">Keterangan</td>
