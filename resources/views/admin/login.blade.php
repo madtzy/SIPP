@@ -6,8 +6,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!--===============================================================================================-->
-    <link rel="icon" type="image/png" href="/img/favicon.ico" />
-    <!--===============================================================================================-->
     {{-- <link rel="stylesheet" type="text/css" href="/vendor/bootstrap/css/bootstrap.min.css"> --}}
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
@@ -53,7 +51,8 @@
                 <form class="login100-form validate-form p-b-33 p-t-5" action="/login" method="post">
                     @csrf
                     <div class="form-floating wrap-input100 validate-input" data-validate="Enter username">
-                        <input class="input100 @error('username') is-invalid @enderror" type="text" name="username" placeholder="Username" value="{{ old('username') }}" required>
+                        <input class="input100 @error('username') is-invalid @enderror" type="text" name="username"
+                            placeholder="Username" value="{{ old('username') }}" required>
                         <span class="focus-input100" data-placeholder="&#xe82a;"></span>
                         @error('username')
                             <div class="invalid-feedback text-center">
@@ -63,7 +62,8 @@
                     </div>
 
                     <div class="wrap-input100 validate-input" data-validate="Enter password">
-                        <input class="input100 @error('password') is-invalid @enderror" type="password" name="password" placeholder="Password" required>
+                        <input class="input100 @error('password') is-invalid @enderror" type="password" name="password"
+                            placeholder="Password" required>
                         <span class="focus-input100" data-placeholder="&#xe80f;"></span>
                         @error('password')
                             <div class="invalid-feedback text-center">
@@ -72,14 +72,11 @@
                         @enderror
                     </div>
 
-                    <div class="container-login100-form-btn">
+                    <div class="container-login100-form-btn mt-4">
                         <button class="login100-form-btn">
                             Login
                         </button>
                     </div>
-                    <p class="text-danger text-center mt-3">
-                        Belum Punya Akun?<a href="/register" class="text-danger text-decoration-none"> Register</a>
-                    </p>
                 </form>
             </div>
         </div>

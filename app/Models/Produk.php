@@ -20,10 +20,10 @@ class Produk extends Model
     }
     public function stok()
     {
-        return $this->belongsTo(Stok::class);
+        return $this->hasMany(Stok::class);
     }
     public function buyer()
     {
-        return $this->belongsTo(Buyer::class);
+        return $this->hasMany(Buyer::class);
     }
 }

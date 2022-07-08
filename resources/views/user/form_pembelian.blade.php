@@ -1,17 +1,14 @@
 @extends('user.layouts.main')
 @section('content')
     <div class="row justify-content-center">
-        <div class="col-8">
+        <div class="col-10 col-lg-8">
             <h5 class="margin text-dark fw-bold">FORM PEMBELIAN PRODUK</h5>
             <hr>
-            <form action="/beli" method="post" enctype="multipart/form-data">
+            <form action="/user/beli" method="post" class="pembelian">
                 @csrf
+                <input type="hidden" name="produk_id" class="form-control" value="{{ $produk->id }}">
+                <input type="hidden" name="harga" id="harga" class="form-control" value="{{ $produk->harga }}">
                 <div class="form-group">
-                    @foreach ($produks as $produk)
-                        <div class="form-group">
-                            <input type="hidden" name="produk_id" class="form-control" value="{{ $produk->id }}">
-                        </div>
-                    @endforeach
                     <label for="nama">Nama</label>
                     <input type="text" id="nama" name="nama"
                         class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
@@ -74,7 +71,7 @@
                     @enderror
                 </div>
                 <button type="submit" class="btn btn-sm btn-primary">Simpan</button>
-                <a href="/admin/produks" class="btn btn-sm btn-danger">Kembali</a>
+                <a href="/" class="btn btn-sm btn-danger">Kembali</a>
             </form>
         </div>
     </div>

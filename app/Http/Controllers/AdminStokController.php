@@ -16,8 +16,8 @@ class AdminStokController extends Controller
     public function index()
     {
         return view('admin.stoks.index', [
+            'title' => 'All Stok',
             'stoks' => Stok::latest()->get()
-            // 'produks' => Produk::all()
         ]);
     }
 
@@ -28,9 +28,10 @@ class AdminStokController extends Controller
      */
     public function create()
     {
-        return view('admin.stoks.create', [
-            'produks' => Produk::all()
-        ]);
+        // return view('admin.stoks.create', [
+        //     'title' => 'Form Tambah Stok',
+        //     'produks' => Produk::all()
+        // ]);
     }
 
     /**
@@ -41,18 +42,18 @@ class AdminStokController extends Controller
      */
     public function store(Request $request)
     {
-        $validatedData = $request->validate([
-            'produk_id' => 'required',
-            'tanggal' => 'required',
-            'stok_sebelumnya' => 'required',
-            'stok_tambah' => 'required',
-            'stok_akhir' => 'required',
-            'kualitas' => 'required'
-        ]);
+        // $validatedData = $request->validate([
+        //     'produk_id' => 'required',
+        //     'tanggal' => 'required',
+        //     'stok_sebelumnya' => 'required',
+        //     'stok_tambah' => 'required',
+        //     'stok_akhir' => 'required',
+        //     'kualitas' => 'required'
+        // ]);
 
-        Stok::create($validatedData);
+        // Stok::create($validatedData);
 
-        return redirect('/admin/stoks')->with('success', 'Data Stok Berhasil Ditambah');
+        // return redirect('/admin/stoks')->with('success', 'Data Stok Berhasil Ditambah');
     }
 
     /**

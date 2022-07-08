@@ -1,6 +1,6 @@
 @extends('admin.layouts.main')
 @section('content')
-    <h4 class="text-dark fw-bold mt-2"><i class='bx bx-sm bxs-bowl-rice me-3'></i>DATA STOK</h4>
+    <h4 class="text-dark fw-bold mt-2"><i class='bx bx-sm bxs-customize me-3'></i>DATA STOK</h4>
     <hr>
     @if (session()->has('success'))
         <div class="alert alert-success alert-dismissible fade show col-12" role="alert">
@@ -41,7 +41,7 @@
                             <form action="/admin/stoks/{{ $stok->id }}" method="post" class="d-inline">
                                 @method('delete')
                                 @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Are You Sure ?')">
+                                <button class="badge bg-danger border-0" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini ?')">
                                     <i class="fa-solid fa-trash"></i>
                                 </button>
                             </form>

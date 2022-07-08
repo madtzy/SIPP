@@ -51,7 +51,7 @@
 <body>
     @include('user.layouts.navbar')
     @yield('content')
-    @include('user.layouts.footer')
+    @yield('footer')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
@@ -68,6 +68,16 @@
     <!-- Template Javascript -->
     <script src="/js/user.js"></script>
     <script src="/js/fixednav.js"></script>
+    {{-- Hitung Otomatis --}}
+    <script type="text/javascript">
+    $(".pembelian").keyup(function() {
+        var harga = parseInt($("#harga").val())
+        var jumlah = parseInt($("#jumlah").val())
+
+        var total_bayar = harga * jumlah;
+        $("#total_bayar").attr("value", total_bayar)
+    })
+</script>
 </body>
 
 </html>

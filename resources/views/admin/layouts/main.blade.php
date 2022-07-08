@@ -22,21 +22,22 @@
     <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css" rel="stylesheet">
     <!-- box icon -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
-    <title>Admin</title>
+    <title>SIPP | {{ $title }}</title>
 </head>
 
 <body id="body-pd">
-    <header class="header" id="header">
+    <header class="header bg-light" id="header">
         <div class="header__toggle">
             <i class='bx bx-menu' id="header-toggle"></i>
         </div>
-        <div class="welcome ms-auto">Welcome, {{ auth()->user()->nama }}</div>
-        <div class="navbar-nav">
+        <div class="welcome ms-auto"><strong>Welcome, {{ auth()->user()->nama }}</strong></div>
+        
+        <div class="navbar-nav d-flex">
             <div class="nav-item text-nowrap">
                 <form action="/logout" method="post">
                     @csrf
-                    <button class="nav-link bg-light border-0 ms-3 py-0"><i
-                            class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <button class="nav-link text-dark bg-light border-0 ms-3 py-3 px-3">
+                        <i class="fa-solid fa-right-from-bracket fa-lg"></i>
                     </button>
                 </form>
             </div>
@@ -87,6 +88,7 @@
     <script>
         $(document).ready(function() {
             var table = $('#table').DataTable({
+                "sScrollY": ($(window).height() - 430),
                 lengthChange: false,
                 buttons: [{
                         extend: 'print',

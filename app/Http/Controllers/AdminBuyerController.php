@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Buyer;
+use App\Models\Produk;
 use Illuminate\Http\Request;
 
 class AdminBuyerController extends Controller
@@ -15,7 +16,8 @@ class AdminBuyerController extends Controller
     public function index()
     {
         return view('admin.buyers.index', [
-            'buyers' => Buyer::latest()->get()
+            'buyers' => Buyer::latest()->get(),
+            'title' => 'Data Pemesan'
         ]);
     }
 
@@ -48,7 +50,10 @@ class AdminBuyerController extends Controller
      */
     public function show(Buyer $buyer)
     {
-        //
+        return view('admin.buyers.show', [
+            'buyer' => $buyer,
+            'title' => 'Detail Pemesan'
+        ]);
     }
 
     /**

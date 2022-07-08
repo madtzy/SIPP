@@ -19,7 +19,7 @@ class CreateProduksTable extends Migration
             $table->integer('harga');
             $table->integer('stok');
             $table->text('keterangan');
-            $table->text('gambar')->nullable();
+            $table->text('gambar');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
