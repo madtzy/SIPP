@@ -9,6 +9,9 @@ use App\Http\Controllers\AdminStokController;
 use App\Http\Controllers\AdminBuyerController;
 use App\Http\Controllers\AdminProdukController;
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\LaporanController;
+use App\Http\Controllers\PrediksiController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -21,28 +24,43 @@ use App\Http\Controllers\AdminDashboardController;
 |
 */
 
-Route::get('/', [ProdukController::class, 'index'])->middleware('guest');
 
-Route::get('/login', [LoginController::class, 'index'])->name('login')->middleware('guest');
 
 Route::post('/login', [LoginController::class, 'authenticate']);
-
-Route::get('/register', [RegisterController::class, 'index'])->middleware('guest');
-
 Route::post('/register', [RegisterController::class, 'store']);
-
 Route::post('/logout', [LoginController::class, 'logout']);
 
-Route::get('/admin/dashboard', [AdminDashboardController::class, 'index'])->middleware('auth');
 
-Route::resource('/admin/produks', AdminProdukController::class)->middleware('auth');
+Route::middleware(['auth'])->group(function () {
+    Route::prefix('admin')->group(function () {
+        Route::get('dashboard', [AdminDashboardController::class, 'index']);
+        Route::resource('produks', AdminProdukController::class);
+        Route::resource('stoks', AdminStokController::class);
+        Route::resource('buyers', AdminBuyerController::class);
+        Route::prefix('laporan')->group(function () {
+            Route::get('penjualan', [LaporanController::class, 'penjualan']);
+            Route::get('persediaan', [LaporanController::class, 'persediaan']);
+            Route::get('kualitas', [LaporanController::class, 'kualitas']);
+        });
 
-Route::resource('/admin/stoks', AdminStokController::class)->middleware('auth');
+        Route::prefix('prediksi')->group(function () {
+            Route::get('harian', [PrediksiController::class, 'harian']);
+            Route::get('mingguan', [PrediksiController::class, 'mingguan']);
+            Route::get('bulanan', [PrediksiController::class, 'bulanan']);
+            Route::get('duamingguan', [PrediksiController::class, 'duamingguan']);
+            Route::post('fuzzification', [PrediksiController::class, 'fuzzification'])->name('fuzzification');
+        });
 
-Route::resource('/admin/buyers', AdminBuyerController::class)->middleware('auth');
 
-Route::get('/beli', [BuyerController::class, 'index'])->middleware('guest');
 
-Route::post('/beli', [BuyerController::class, 'store'])->middleware('guest');
+    });
+});
 
+Route::middleware(['guest'])->group(function () {
+    Route::get('/', [ProdukController::class, 'index']);
+    Route::get('/login', [LoginController::class, 'index'])->name('login');
+    Route::get('/register', [RegisterController::class, 'index']);
+    Route::get('/beli', [BuyerController::class, 'index']);
+    Route::post('/beli', [BuyerController::class, 'store']);
+});
 

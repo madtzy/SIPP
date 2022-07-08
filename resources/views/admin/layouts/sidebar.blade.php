@@ -27,11 +27,24 @@
                     <div class="bg-dropdown py-2">
                         <a class="dropdown-item text-white ms-5" href="/admin/prediksi/harian">Prediksi Harian</a>
                         <hr class="dropdown-divider">
-                        <a class="dropdown-item text-white ms-5" href="/admin/prediksi/7hari">Prediksi 7 Hari</a>
+                        <a class="dropdown-item text-white ms-5" href="/admin/prediksi/mingguan">Prediksi 7 Hari</a>
                         <hr class="dropdown-divider">
-                        <a class="dropdown-item text-white ms-5" href="/admin/prediksi/14hari">Prediksi 14 Hari</a>
+                        <a class="dropdown-item text-white ms-5" href="/admin/prediksi/duamingguan">Prediksi 14 Hari</a>
                         <hr class="dropdown-divider">
                         <a class="dropdown-item text-white ms-5" href="/admin/prediksi/bulanan"></i>Bulanan</a>
+                    </div>
+                </div>
+                <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/laporan*') ? 'active' : '' }}" data-bs-toggle="collapse" data-bs-target="#collapse-laporan"
+                    aria-expanded="false" aria-controls="collapse">
+                    <span class="nav__name fs-6"><i class='bx bx-sm bxs-report me-3'></i>Laporan Prediksi</span>
+                </a>
+                <div id="collapse-laporan" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-dropdown py-2">
+                        <a class="dropdown-item text-white ms-5" href="/admin/laporan/penjualan">Penjualan</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item text-white ms-5" href="/admin/laporan/persediaan">Persediaan</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item text-white ms-5" href="/admin/laporan/kualitas">Kualitas</a>
                     </div>
                 </div>
                 <a href="/admin/kasir" class="nav__link text-white {{ Request::is('admin/kasir*') ? 'active' : '' }}">
