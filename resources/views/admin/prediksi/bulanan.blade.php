@@ -18,7 +18,7 @@
     <div class="col-lg-10">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title">Data bulanan </h5>
+                <h5 class="card-title">Prediksi Bulanan</h5>
                 <div class="table-responsive">
                     <table class="table table-striped table-hover table-bordered table-sm " id="table">
                         <thead>
