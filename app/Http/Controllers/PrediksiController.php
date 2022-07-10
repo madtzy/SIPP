@@ -100,6 +100,50 @@ class PrediksiController extends Controller
         ]);
     }
 
+    public function prediksi_harian(Request $request)
+    {
+        $tahun = $request->get('tahun');
+        $persediaan = $request->get('persediaan');
+        $kualitas = $request->get('kualitas');
+        $penjualan = 0;
+
+        $persediaan_minmax = DB::select('select * from persediaan_minmax where tahun = ?',[$tahun]);
+        $penjualan_minmax = DB::select('select * from penjualan_minmax where tahun = ?',[$tahun]);
+        $kualitas_minmax = DB::select('select * from kualitas_minmax where tahun = ?',[$tahun]);
+
+        if($persediaan_minmax) $persediaan_minmax = $persediaan_minmax[0];
+        if($penjualan_minmax) $penjualan_minmax = $penjualan_minmax[0];
+        if($kualitas_minmax) $kualitas_minmax = $kualitas_minmax[0];
+
+        $dataHarian = DB::select('select * from harian where year(tanggal) = ?',[$tahun]);
+
+            $dataHasil = [
+                'persediaan_a' => $persediaan_minmax->harian_persediaan_min,
+                'persediaan_b' => $persediaan_minmax->harian_persediaan_max,
+                'persediaan_x' => $persediaan,
+                'kualitas_bagus_a' => $kualitas_minmax->harian_kualitas_sedang,
+                'kualitas_bagus_b' => $kualitas_minmax->harian_kualitas_bagus,
+                'kualitas_sedang_a1' => $kualitas_minmax->harian_kualitas_jelek,
+                'kualitas_sedang_b1' => $kualitas_minmax->harian_kualitas_sedang,
+                'kualitas_sedang_a2' => $kualitas_minmax->harian_kualitas_sedang,
+                'kualitas_sedang_b2' => $kualitas_minmax->harian_kualitas_bagus,
+                'kualitas_jelek_a' => $kualitas_minmax->harian_kualitas_jelek,
+                'kualitas_jelek_b' => $kualitas_minmax->harian_kualitas_sedang,
+                'kualitas_x' => $kualitas,
+                'penjualan_a' => $penjualan_minmax->harian_penjualan_min,
+                'penjualan_b' => $penjualan_minmax->harian_penjualan_max,
+                'penjualan_x' => $penjualan
+            ];
+
+            $fuzzification = $this->getFuzzyfication($dataHasil);
+            $fuzzification = json_decode(json_encode($fuzzification), false);
+
+            return view('admin.prediksi.fuzzification', [
+                'title' => 'Fuzzyfication',
+                'data' =>$fuzzification
+            ]);
+    }
+
     public function mingguan(Request $request)
     {
         $tahun = $request->get('tahun');
@@ -169,6 +213,68 @@ class PrediksiController extends Controller
             'mingguan' => $dataMingguanFinal,
             'tahun'=>$tahun
         ]);
+    }
+
+    public function prediksi_mingguan(Request $request)
+    {
+        $tahun = $request->get('tahun');
+        $persediaan = $request->get('persediaan');
+        $kualitas = $request->get('kualitas');
+        $penjualan = 0;
+
+        $dataMingguanRecord = DB::select('select * from mingguan where tahun = ?',[$tahun]);
+        $dataMingguan = [];
+        $minggu=1;
+        foreach($dataMingguanRecord as $mingguan){
+            for ($i=1; $i <= 4; $i++) {
+                $dataMinggu = (array)  $mingguan;
+                $dataMingguan[] = [
+                    "tahun"=>$mingguan->tahun,
+                    "bulan"=>$mingguan->bulan,
+                    "minggu"=>$minggu,
+                    "persediaan"=>$dataMinggu['persediaan_minggu_'.$i],
+                    "kualitas"=>$dataMinggu['kualitas_minggu_'.$i],
+                    "penjualan"=>$dataMinggu['penjualan_minggu_'.$i],
+                ];
+                $minggu++;
+            }
+        }
+
+        $persediaan_minmax = DB::select('select * from persediaan_minmax where tahun = ?',[$tahun]);
+        $penjualan_minmax = DB::select('select * from penjualan_minmax where tahun = ?',[$tahun]);
+        $kualitas_minmax = DB::select('select * from kualitas_minmax where tahun = ?',[$tahun]);
+
+        if($persediaan_minmax) $persediaan_minmax = $persediaan_minmax[0];
+        if($penjualan_minmax) $penjualan_minmax = $penjualan_minmax[0];
+        if($kualitas_minmax) $kualitas_minmax = $kualitas_minmax[0];
+
+        $dataHasil = [
+            'persediaan_a' => $persediaan_minmax->mingguan_persediaan_min,
+            'persediaan_b' => $persediaan_minmax->mingguan_persediaan_max,
+            'persediaan_x' => $persediaan,
+            'kualitas_bagus_a' => $kualitas_minmax->mingguan_kualitas_sedang,
+            'kualitas_bagus_b' => $kualitas_minmax->mingguan_kualitas_bagus,
+            'kualitas_sedang_a1' => $kualitas_minmax->mingguan_kualitas_jelek,
+            'kualitas_sedang_b1' => $kualitas_minmax->mingguan_kualitas_sedang,
+            'kualitas_sedang_a2' => $kualitas_minmax->mingguan_kualitas_sedang,
+            'kualitas_sedang_b2' => $kualitas_minmax->mingguan_kualitas_bagus,
+            'kualitas_jelek_a' => $kualitas_minmax->mingguan_kualitas_jelek,
+            'kualitas_jelek_b' => $kualitas_minmax->mingguan_kualitas_sedang,
+            'kualitas_x' => $kualitas,
+            'penjualan_a' => $penjualan_minmax->mingguan_penjualan_min,
+            'penjualan_b' => $penjualan_minmax->mingguan_penjualan_max,
+            'penjualan_x' => $penjualan
+        ];
+
+        $fuzzification = $this->getFuzzyfication($dataHasil);
+        $fuzzification = json_decode(json_encode($fuzzification), false);
+
+        return view('admin.prediksi.fuzzification', [
+            'title' => 'Fuzzyfication',
+            'data' =>$fuzzification
+        ]);
+
+
     }
 
     public function duamingguan(Request $request)
@@ -241,6 +347,69 @@ class PrediksiController extends Controller
         ]);
     }
 
+    public function prediksi_duamingguan(Request $request)
+    {
+        $tahun = $request->get('tahun');
+        $persediaan = $request->get('persediaan');
+        $kualitas = $request->get('kualitas');
+        $penjualan = 0;
+
+        $dataMingguanRecord = DB::select('select * from dua_mingguan where tahun = ?',[$tahun]);
+        $dataMingguan = [];
+        $minggu=1;
+        foreach($dataMingguanRecord as $mingguan){
+            for ($i=1; $i <= 2; $i++) {
+                $dataMinggu = (array)  $mingguan;
+                $dataMingguan[] = [
+                    "tahun"=>$mingguan->tahun,
+                    "bulan"=>$mingguan->bulan,
+                    "minggu"=>$minggu,
+                    "persediaan"=>$dataMinggu['persediaan_duaminggu_'.$i],
+                    "kualitas"=>$dataMinggu['kualitas_duaminggu_'.$i],
+                    "penjualan"=>$dataMinggu['penjualan_duaminggu_'.$i],
+                ];
+                $minggu++;
+            }
+        }
+
+        $persediaan_minmax = DB::select('select * from persediaan_minmax where tahun = ?',[$tahun]);
+        $penjualan_minmax = DB::select('select * from penjualan_minmax where tahun = ?',[$tahun]);
+        $kualitas_minmax = DB::select('select * from kualitas_minmax where tahun = ?',[$tahun]);
+
+        if($persediaan_minmax) $persediaan_minmax = $persediaan_minmax[0];
+        if($penjualan_minmax) $penjualan_minmax = $penjualan_minmax[0];
+        if($kualitas_minmax) $kualitas_minmax = $kualitas_minmax[0];
+
+
+            $dataHasil = [
+                'persediaan_a' => $persediaan_minmax->dua_mingguan_persediaan_min,
+                'persediaan_b' => $persediaan_minmax->dua_mingguan_persediaan_max,
+                'persediaan_x' => $persediaan,
+                'kualitas_bagus_a' => $kualitas_minmax->dua_mingguan_kualitas_sedang,
+                'kualitas_bagus_b' => $kualitas_minmax->dua_mingguan_kualitas_bagus,
+                'kualitas_sedang_a1' => $kualitas_minmax->dua_mingguan_kualitas_jelek,
+                'kualitas_sedang_b1' => $kualitas_minmax->dua_mingguan_kualitas_sedang,
+                'kualitas_sedang_a2' => $kualitas_minmax->dua_mingguan_kualitas_sedang,
+                'kualitas_sedang_b2' => $kualitas_minmax->dua_mingguan_kualitas_bagus,
+                'kualitas_jelek_a' => $kualitas_minmax->dua_mingguan_kualitas_jelek,
+                'kualitas_jelek_b' => $kualitas_minmax->dua_mingguan_kualitas_sedang,
+                'kualitas_x' => $kualitas,
+                'penjualan_a' => $penjualan_minmax->dua_mingguan_penjualan_min,
+                'penjualan_b' => $penjualan_minmax->dua_mingguan_penjualan_max,
+                'penjualan_x' => $penjualan
+            ];
+
+            $fuzzification = $this->getFuzzyfication($dataHasil);
+            $fuzzification = json_decode(json_encode($fuzzification), false);
+
+            return view('admin.prediksi.fuzzification', [
+                'title' => 'Fuzzyfication',
+                'data' =>$fuzzification
+            ]);
+
+
+    }
+
     public function bulanan(Request $request)
     {
         $tahun = $request->get('tahun');
@@ -290,6 +459,49 @@ class PrediksiController extends Controller
             'bulanan' => $dataBulananFinal,
             'tahun'=>$tahun
         ]);
+    }
+
+    public function prediksi_bulanan(Request $request)
+    {
+        $tahun = $request->get('tahun');
+        $persediaan = $request->get('persediaan');
+        $kualitas = $request->get('kualitas');
+        $penjualan = 0;
+
+        $persediaan_minmax = DB::select('select * from persediaan_minmax where tahun = ?',[$tahun]);
+        $penjualan_minmax = DB::select('select * from penjualan_minmax where tahun = ?',[$tahun]);
+        $kualitas_minmax = DB::select('select * from kualitas_minmax where tahun = ?',[$tahun]);
+        if($persediaan_minmax) $persediaan_minmax = $persediaan_minmax[0];
+        if($penjualan_minmax) $penjualan_minmax = $penjualan_minmax[0];
+        if($kualitas_minmax) $kualitas_minmax = $kualitas_minmax[0];
+
+
+        $dataHasil = [
+            'persediaan_a' => $persediaan_minmax->bulanan_persediaan_min,
+            'persediaan_b' => $persediaan_minmax->bulanan_persediaan_max,
+            'persediaan_x' => $persediaan,
+            'kualitas_bagus_a' => $kualitas_minmax->bulanan_kualitas_sedang,
+            'kualitas_bagus_b' => $kualitas_minmax->bulanan_kualitas_bagus,
+            'kualitas_sedang_a1' => $kualitas_minmax->bulanan_kualitas_jelek,
+            'kualitas_sedang_b1' => $kualitas_minmax->bulanan_kualitas_sedang,
+            'kualitas_sedang_a2' => $kualitas_minmax->bulanan_kualitas_sedang,
+            'kualitas_sedang_b2' => $kualitas_minmax->bulanan_kualitas_bagus,
+            'kualitas_jelek_a' => $kualitas_minmax->bulanan_kualitas_jelek,
+            'kualitas_jelek_b' => $kualitas_minmax->bulanan_kualitas_sedang,
+            'kualitas_x' => $kualitas,
+            'penjualan_a' => $penjualan_minmax->bulanan_penjualan_min,
+            'penjualan_b' => $penjualan_minmax->bulanan_penjualan_max,
+            'penjualan_x' => $penjualan
+        ];
+
+        $fuzzification = $this->getFuzzyfication($dataHasil);
+        $fuzzification = json_decode(json_encode($fuzzification), false);
+
+        return view('admin.prediksi.fuzzification', [
+            'title' => 'Fuzzyfication',
+            'data' =>$fuzzification
+        ]);
+
     }
 
     public function highOrder($a,$b,$z1)
@@ -552,7 +764,7 @@ class PrediksiController extends Controller
                     'a_z'   => $defuzzyfikasi_az,
                     'a'     => $defuzzyfikasi_a,
                 ],
-                'rata_rata'=> array_sum($defuzzyfikasi_az)/array_sum($defuzzyfikasi_a)
+                'rata_rata'=> (array_sum($defuzzyfikasi_az) > 0 && array_sum($defuzzyfikasi_a) > 0)? (array_sum($defuzzyfikasi_az)/array_sum($defuzzyfikasi_a)) : 0
                 // 'rata_rata'=>0
             ]
         ];

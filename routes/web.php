@@ -47,9 +47,13 @@ Route::middleware(['auth'])->group(function () {
 
         Route::prefix('prediksi')->group(function () {
             Route::get('harian', [PrediksiController::class, 'harian']);
+            Route::get('harian/manual', [PrediksiController::class, 'prediksi_harian'])->name('prediksi.harian.manual');
             Route::get('mingguan', [PrediksiController::class, 'mingguan']);
-            Route::get('bulanan', [PrediksiController::class, 'bulanan']);
+            Route::get('mingguan/manual', [PrediksiController::class, 'prediksi_mingguan'])->name('prediksi.mingguan.manual');
             Route::get('duamingguan', [PrediksiController::class, 'duamingguan']);
+            Route::get('duamingguan/manual', [PrediksiController::class, 'prediksi_duamingguan'])->name('prediksi.duamingguan.manual');
+            Route::get('bulanan', [PrediksiController::class, 'bulanan']);
+            Route::get('bulanan/manual', [PrediksiController::class, 'prediksi_bulanan'])->name('prediksi.bulanan.manual');
             Route::post('fuzzification', [PrediksiController::class, 'fuzzification'])->name('fuzzification');
         });
 

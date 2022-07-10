@@ -14,6 +14,14 @@
         </div>
         <button type="submit" class="btn btn-primary btn-sm">Filter</button>
         </form>
+        @if ($tahun)
+            <div class="d-grid gap-2 mt-1">
+                <button type="button" class="btn btn-success btn-block btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Prediksi Data
+                </button>
+            </div>
+        @endif
+
     </div>
     <div class="col-lg-10">
         <div class="card">
@@ -87,4 +95,37 @@
         </div>
     </div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Prediksi Data</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form action="{{ route('prediksi.harian.manual')  }}">
+        <input type="hidden" name="tahun" value="{{ $tahun }}">
+
+        <div class="modal-body">
+                <div class="mb-3">
+                    <label for="" class="form-label">Persediaan</label>
+                    <input type="number" name="persediaan" id="" class="form-control" required="required">
+                </div>
+                <div class="mb-3">
+                    <label for="" class="form-label">Kualitas</label>
+                    <input type="number" name="kualitas" id="" class="form-control" required="required">
+                </div>
+
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Kirim Data</button>
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>
+
 @endsection
