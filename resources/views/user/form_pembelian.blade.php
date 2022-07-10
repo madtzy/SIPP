@@ -4,7 +4,7 @@
         <div class="col-10 col-lg-8">
             <h5 class="margin text-dark fw-bold">FORM PEMBELIAN PRODUK</h5>
             <hr>
-            <form action="/user/beli" method="post" class="pembelian">
+            <form action="/beli" method="post" class="pembelian">
                 @csrf
                 <input type="hidden" name="produk_id" class="form-control" value="{{ $produk->id }}">
                 <input type="hidden" name="harga" id="harga" class="form-control" value="{{ $produk->harga }}">

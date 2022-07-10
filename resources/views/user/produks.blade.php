@@ -59,9 +59,9 @@
                                 <span class="badge badge-sm bg-success">Rp. {{ $produk->harga }}</span>
                                 <span class="badge badge-sm bg-secondary">{{ $produk->stok }} Karung</span>
                                 <div class="mt-3">
-                                    <a href="/user/beli/{{ $produk->id }}"
+                                    <a href="/beli/{{ $produk->id }}"
                                         class="btn-sm btn-primary text-decoration-none me-2">Beli</a>
-                                    <a href="/user/beli/{{ $produk->id }}" class="btn-sm btn-warning text-decoration-none"
+                                    <a href="/beli/{{ $produk->id }}" class="btn-sm btn-warning text-decoration-none"
                                         data-bs-toggle="modal" data-bs-target="#detail-{{ $produk->id }}">Detail</a>
                                 </div>
                             </div>
