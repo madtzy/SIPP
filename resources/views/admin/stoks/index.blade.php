@@ -17,9 +17,7 @@
                     <th scope="col">No</th>
                     <th scope="col">Nama</th>
                     <th scope="col">tanggal</th>
-                    <th scope="col">Stok Sebelumnya</th>
-                    <th scope="col">Stok Tambah</th>
-                    <th scope="col">Stok Akhir</th>
+                    <th scope="col">Stok</th>
                     <th scope="col">Kualitas</th>
                     <th scope="col">Aksi</th>
                 </tr>
@@ -31,20 +29,12 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $stok->produk->nama }}</td>
                         <td>{{ $stok->tanggal }}</td>
-                        <td>{{ $stok->stok_sebelumnya }}</td>
-                        <td>{{ $stok->stok_tambah }}</td>
-                        <td>{{ $stok->stok_akhir }}</td>
+                        <td>{{ $stok->stok }}</td>
                         <td>{{ $stok->kualitas }}</td>
                         <td>
                             <a href="/admin/stoks/{{ $stok->id }}/edit" class="badge bg-warning"><i
                                     class="fa-solid fa-pen-to-square"></i></a>
-                            <form action="/admin/stoks/{{ $stok->id }}" method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="badge bg-danger border-0" onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini ?')">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form>
+
                         </td>
                     </tr>
                 @endforeach

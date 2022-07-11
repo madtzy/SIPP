@@ -25,7 +25,7 @@
                 </div>
             @enderror
         </div>
-        <div class="mb-2">
+        {{-- <div class="mb-2">
             <label for="stok" class="form-label">Stok</label>
             <input type="number" class="form-control @error('stok') is-invalid @enderror" id="stok" name="stok"
                 value="{{ old('stok', $produk->stok) }}" required>
@@ -34,7 +34,7 @@
                     {{ $message }}
                 </div>
             @enderror
-        </div>
+        </div> --}}
         <div class="mb-2">
             <label for="keterangan" class="form-label">Keterangan</label>
             <input class="form-control mb-3 @error('keterangan') is-invalid @enderror" id="keterangan" name="keterangan" rows="3" value="{{ old('keterangan', $produk->keterangan) }}" required></input>

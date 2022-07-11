@@ -42,7 +42,7 @@
                 <div class="form-group mt-2">
                     <label for="tanggal">Tanggal</label>
                     <input type="date" id="tanggal" name="tanggal"
-                        class="form-control @error('tanggal') is-invalid @enderror" value="{{ old('tanggal') }}" required>
+                        class="form-control @error('tanggal') is-invalid @enderror" value="{{ old('tanggal',date('Y-m-d')) }}" required>
                     @error('tanggal')
                         <div class="invalid-feedback">
                             {{ $message }}

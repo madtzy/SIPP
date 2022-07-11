@@ -15,6 +15,7 @@ class Penjualan extends Model
         'tanggal',
         'jumlah'
     ];
+    public $timestamps = false;
 
     use HasFactory;
 

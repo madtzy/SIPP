@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Produk;
 use App\Models\Stok;
+use App\Models\Kualitas;
+use App\Models\Persediaan;
 use Illuminate\Http\Request;
 
 class AdminStokController extends Controller
@@ -28,7 +30,12 @@ class AdminStokController extends Controller
      */
     public function create()
     {
+        $products = Produk::get();
         //
+        return view('admin.stoks.create', [
+            'title' => 'Create Stok',
+            'products'=>$products
+        ]);
     }
 
     /**
@@ -39,7 +46,41 @@ class AdminStokController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'produk_id'          => 'required|exists:produks,id',
+            'tanggal'         => 'required',
+            'kualitas'         => 'required',
+            'stok'          => 'required',
+        ]);
+
+        $tanggal = $request->tanggal;
+        $tahun = date('Y',strtotime($tanggal));
+        $bulan = date('m',strtotime($tanggal));
+        $hari = date('d',strtotime($tanggal));
+        $stok = Stok::create($validatedData);
+        if($stok){
+            $stok_hariini = Stok::where('tanggal',$tanggal)->sum('stok');
+            $kualitas_hariini = Stok::where('tanggal',$tanggal)->avg('kualitas');
+            $kualitas = [
+                'tahun'=>$tahun,
+                'bulan'=>$bulan,
+                'tanggal'=>$hari,
+                'jumlah'=>$kualitas_hariini,
+            ];
+
+            $persediaan = [
+                'tahun'=>$tahun,
+                'bulan'=>$bulan,
+                'tanggal'=>$hari,
+                'jumlah'=>$stok_hariini,
+            ];
+
+            Kualitas::create($kualitas);
+            Persediaan::create($persediaan);
+            stokGenerate($request->produk_id);
+        }
+
+        return redirect('/admin/stoks')->with('success', 'Data Stok Berhasil Ditambah');
     }
 
     /**
@@ -62,6 +103,12 @@ class AdminStokController extends Controller
     public function edit(Stok $stok)
     {
         //
+        $products = Produk::get();
+        return view('admin.stoks.edit', [
+            'title' => 'Create Stok',
+            'products'=>$products,
+            'stok'=>$stok
+        ]);
     }
 
     /**
@@ -74,6 +121,43 @@ class AdminStokController extends Controller
     public function update(Request $request, Stok $stok)
     {
         //
+        $validatedData = $request->validate([
+            'produk_id'          => 'required|exists:produks,id',
+            'tanggal'         => 'required',
+            'kualitas'         => 'required',
+            'stok'          => 'required',
+        ]);
+
+        $tanggal = $request->tanggal;
+        $tahun = date('Y',strtotime($tanggal));
+        $bulan = date('m',strtotime($tanggal));
+        $hari = date('d',strtotime($tanggal));
+
+        $stok = Stok::where('id', $stok->id)
+            ->update($validatedData);
+        if($stok){
+            $stok_hariini = Stok::where('tanggal',$tanggal)->sum('stok');
+            $kualitas_hariini = Stok::where('tanggal',$tanggal)->avg('kualitas');
+            $kualitas = [
+                'tahun'=>$tahun,
+                'bulan'=>$bulan,
+                'tanggal'=>$hari,
+                'jumlah'=>$kualitas_hariini,
+            ];
+
+            $persediaan = [
+                'tahun'=>$tahun,
+                'bulan'=>$bulan,
+                'tanggal'=>$hari,
+                'jumlah'=>$stok_hariini,
+            ];
+
+            Kualitas::create($kualitas);
+            Persediaan::create($persediaan);
+            stokGenerate($request->produk_id);
+        }
+
+        return redirect('/admin/stoks')->with('success', 'Data Stok Berhasil Diubah');
     }
 
     /**
