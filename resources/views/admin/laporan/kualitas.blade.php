@@ -37,7 +37,7 @@
                                 <tr>
                                     <td class="text-center">{{ $tanggal }}</td>
                                     @for ($bulan=1;$bulan<=12;$bulan++)
-                                        <td>@if($kualitas) {{ $kualitas[$bulan][$tanggal] }}  @endif</td>
+                                        <td>@if($kualitas) {{ @$kualitas[$bulan][$tanggal] }}  @endif</td>
                                     @endfor
                                 </tr>
                             @endfor

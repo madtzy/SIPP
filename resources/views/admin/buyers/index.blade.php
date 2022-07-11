@@ -17,6 +17,7 @@
                     <th scope="col">Alamat</th>
                     <th scope="col">No Telp</th>
                     <th scope="col">Tanggal</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Aksi</th>
                 </tr>
             </thead>
@@ -28,6 +29,7 @@
                         <td>{{ $buyer->alamat }}</td>
                         <td>{{ $buyer->nomor_telp }}</td>
                         <td>{{ $buyer->tanggal }}</td>
+                        <td>{{ $buyer->status }}</td>
                         <td>
                             <a href="/admin/buyers/{{ $buyer->id }}" class="badge bg-success"><i
                                     class="fa-solid fa-eye"></i></a>

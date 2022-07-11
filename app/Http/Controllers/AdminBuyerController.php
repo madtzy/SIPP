@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Buyer;
 use App\Models\Produk;
+use App\Models\Penjualan;
 use Illuminate\Http\Request;
 
 class AdminBuyerController extends Controller
@@ -64,7 +65,7 @@ class AdminBuyerController extends Controller
      */
     public function edit(Buyer $buyer)
     {
-        //
+
     }
 
     /**
@@ -76,7 +77,35 @@ class AdminBuyerController extends Controller
      */
     public function update(Request $request, Buyer $buyer)
     {
-        //
+        $dataBuyer = Buyer::findOrfail($buyer->id);
+        $validatedData = [
+            'status'=>$request->status
+        ];
+
+        $result = Buyer::where('id', $buyer->id)
+        ->update($validatedData);
+        if($result){
+            if($request->status=="terima"){
+                $penjualan_hariini = Buyer::where('tanggal',$dataBuyer->tanggal)->where('status','terima')->sum('jumlah');
+                $tanggal = $dataBuyer->tanggal;
+                $tahun = date('Y',strtotime($tanggal));
+                $bulan = date('m',strtotime($tanggal));
+                $hari = date('d',strtotime($tanggal));
+
+                $penjualan = [
+                    'tahun'=>$tahun,
+                    'bulan'=>$bulan,
+                    'tanggal'=>$hari,
+                    'jumlah'=>$penjualan_hariini,
+                ];
+
+                Penjualan::create($penjualan);
+                stokGenerate($dataBuyer->produk_id);
+
+            }
+        }
+
+        return redirect('/admin/buyers')->with('success', 'Data Pemesanan Berhasil Diupdate');
     }
 
     /**
