@@ -38,9 +38,7 @@ Route::middleware(['auth'])->group(function () {
         Route::resource('produks', AdminProdukController::class);
         Route::resource('stoks', AdminStokController::class);
         Route::get('buyers/{status}', [AdminBuyerController::class, 'data']);
-
         Route::resource('buyers', AdminBuyerController::class);
-
 
         Route::resource('users', AdminUserController::class);
         Route::prefix('laporan')->group(function () {
