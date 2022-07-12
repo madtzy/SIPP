@@ -22,6 +22,14 @@ class AdminBuyerController extends Controller
         ]);
     }
 
+    public function data($status)
+    {
+        return view('admin.buyers.index', [
+            'buyers' => Buyer::latest()->where('status',$status)->get(),
+            'title' => 'Data Pemesan'
+        ]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

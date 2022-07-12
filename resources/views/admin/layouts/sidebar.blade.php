@@ -20,10 +20,20 @@
                 <a href="/admin/stoks" class="nav__link text-white {{ Request::is('admin/stoks*') ? 'active' : '' }}">
                     <span class="nav__name fs-6"><i class='bx bx-sm bxs-customize me-3'></i>Data Stok</span>
                 </a>
-                <a href="/admin/buyers"
-                    class="nav__link text-white {{ Request::is('admin/buyers*') ? 'active' : '' }}">
+
+                <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/buyers*') ? 'active' : '' }}"
+                    data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false" aria-controls="collapse">
                     <span class="nav__name fs-6"><i class='bx bx-sm bx-money-withdraw me-3'></i>Data Pemesan</span>
                 </a>
+                <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+                    <div class="bg-dropdown py-2">
+                        <a class="dropdown-item text-white ms-5" href="/admin/buyers/belum_diproses">Belum Diproses</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item text-white ms-5" href="/admin/buyers/terima">Diproses</a>
+                        <hr class="dropdown-divider">
+                        <a class="dropdown-item text-white ms-5" href="/admin/buyers/tolak">DiTolak</a>
+                    </div>
+                </div>
                 <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/prediksi*') ? 'active' : '' }}"
                     data-bs-toggle="collapse" data-bs-target="#collapse" aria-expanded="false" aria-controls="collapse">
                     <span class="nav__name fs-6"><i class='bx bx-sm bxs-timer me-3'></i>Data Prediksi</span>
