@@ -1,7 +1,7 @@
 @extends('admin.layouts.main')
 @section('content')
     <div class="col-md-8">
-        <h4 class="text-dark fw-bold">FORM TAMBAH STOK PRODUK</h4>
+        <h4 class="text-dark fw-bold">FORM EDIT STOK PRODUK</h4>
         <hr>
         <form action="{{ route('stoks.update',$stok->id) }}" method="post" enctype="multipart/form-data">
             @method('put')

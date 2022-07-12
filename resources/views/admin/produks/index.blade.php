@@ -36,14 +36,6 @@
                                     class="fa-solid fa-pen-to-square"></i></span></a>
                             <a href="/admin/produks/{{ $produk->id }}" class="badge bg-danger" data-bs-toggle="modal"
                                 data-bs-target="#hapus-{{ $produk->id }}"><i class="fa-solid fa-trash"></i></a>
-                            {{-- <form action="/admin/produks/{{ $produk->id }}" method="post" class="d-inline">
-                                @method('delete')
-                                @csrf
-                                <button class="badge bg-danger border-0"
-                                    onclick="return confirm('Apakah Anda Ingin Menghapus Data Ini ?')">
-                                    <i class="fa-solid fa-trash"></i>
-                                </button>
-                            </form> --}}
                         </td>
                     </tr>
                 @endforeach

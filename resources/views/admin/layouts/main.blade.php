@@ -89,6 +89,7 @@
         $(document).ready(function() {
             var table = $('#table').DataTable({
                 "sScrollY": ($(window).height() - 430),
+                responsive: true,
                 lengthChange: false,
                 buttons: [{
                         extend: 'print',
