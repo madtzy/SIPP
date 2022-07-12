@@ -41,35 +41,11 @@
                             <td>Status</td>
                             <td>:</td>
                             <td>
-                                {{ $buyer->status }}
+                                <div class="badge {{ $buyer->status == 'terima' ? 'bg-success' : 'bg-danger' }}">{{ $buyer->status }}</div>
                             </td>
                         </tr>
                     </table>
-                    @if($buyer->status=="belum_diproses")
-                    <form action="{{ route('buyers.update', $buyer->id)}}" method="post" class="d-inline">
-                        @method('put')
-                        @csrf
-                        <input type="hidden" name="status" value="terima">
-                        <button class="badge bg-success border-0"
-                            onclick="return confirm('Apakah Anda Ingin Menerima Pesanan Ini ?')">
-                            Terima Pesanan
-                        </button>
-                    </form>
-                    <form action="{{ route('buyers.update', $buyer->id)}}" method="post" class="d-inline">
-                        @method('put')
-                        @csrf
-                        <input type="hidden" name="status" value="tolak">
-                        <button class="badge bg-danger border-0"
-                            onclick="return confirm('Apakah Anda Ingin Menolak Pesanan Ini ?')">
-                            Tolak Pesanan
-                        </button>
-                    </form>
-                    <br><br>
-                    @endif
-                    <a href="/admin/buyers" class="btn btn-sm btn-danger">Kembali</a>
-
-
-
+                    <a href="/admin/buyers" class="btn btn-sm btn-danger mt-3">Kembali</a>
                 </div>
             </div>
         </div>

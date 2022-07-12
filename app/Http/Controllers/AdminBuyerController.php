@@ -105,7 +105,7 @@ class AdminBuyerController extends Controller
             }
         }
 
-        return redirect('/admin/buyers')->with('success', 'Data Pemesanan Berhasil Diupdate');
+        return redirect('/admin/buyers')->with('success', 'Data Pemesanan Berhasil Diverifikasi');
     }
 
     /**

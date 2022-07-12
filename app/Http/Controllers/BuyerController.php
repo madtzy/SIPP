@@ -30,6 +30,6 @@ class BuyerController extends Controller
         $produk = Produk::findOrFail($request->produk_id);
 
         Buyer::create($validatedData);
-        return redirect('https://wa.me/6282140979507?text=Produk%20%3A%20'.$produk->nama.'%20Nama%20%3A%20'.$request->nama.'%20Alamat%20%3A%20'.$request->alamat.'%0AJumlah%20%3A%20'.$request->jumlah.'%0ATotal%20Bayar%20%3A%20'.$request->total_bayar);
+        return redirect('https://wa.me/6282140979507?text=Produk%20%3A%20'.$produk->nama. '%0ANama%20%3A%20'.$request->nama.'%0AAlamat%20%3A%20'.$request->alamat.'%0AJumlah%20%3A%20'.$request->jumlah.'%0ATotal%20Bayar%20%3A%20Rp. '.$request->total_bayar);
     }
 }
