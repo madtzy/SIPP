@@ -75,8 +75,20 @@ class AdminStokController extends Controller
                 'jumlah'=>$stok_hariini,
             ];
 
-            Kualitas::create($kualitas);
-            Persediaan::create($persediaan);
+            $cekKualitas = Kualitas::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            if($cekKualitas){
+                Kualitas::where('id',$cekKualitas->id)->update($kualitas);
+            }else{
+                Kualitas::create($kualitas);
+            }
+
+            $cekPersediaan = Persediaan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            if($cekPersediaan){
+                Persediaan::where('id',$cekPersediaan->id)->update($persediaan);
+            }else{
+                Persediaan::create($persediaan);
+            }
+
             stokGenerate($request->produk_id);
         }
 
@@ -152,8 +164,19 @@ class AdminStokController extends Controller
                 'jumlah'=>$stok_hariini,
             ];
 
-            Kualitas::create($kualitas);
-            Persediaan::create($persediaan);
+            $cekKualitas = Kualitas::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            if($cekKualitas){
+                Kualitas::where('id',$cekKualitas->id)->update($kualitas);
+            }else{
+                Kualitas::create($kualitas);
+            }
+
+            $cekPersediaan = Persediaan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            if($cekPersediaan){
+                Persediaan::where('id',$cekPersediaan->id)->update($persediaan);
+            }else{
+                Persediaan::create($persediaan);
+            }
             stokGenerate($request->produk_id);
         }
 
