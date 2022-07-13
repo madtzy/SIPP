@@ -64,5 +64,31 @@
             </div>
 
         </div>
+        <div class="row mt-5">
+            <div class="col">
+                <h5 class="text-center">Data Persediaan & Penjualan Tahun {{ $tahun }}</h5>
+                <div class="row">
+                    <div class=" col-3 mb-3">
+                    <label for="" class="form-label">Tahun</label>
+                    <select class="form-control" name="" id="tahun">
+                        @for ($i=2021;$i<=date('Y');$i++)
+                            <option value="{{ $i }}" @if ($i==$tahun)
+                                selected="selected"
+                            @endif>{{ $i }}</option>
+                        @endfor
+                    </select>
+                    </div>
+                </div>
+                {!! $chartjs->render() !!}
+            </div>
+        </div>
     </div>
+    <script>
+        $('#tahun').on('change', function () {
+        //ways to retrieve selected option and text outside handler
+        // console.log('Changed option value ' + this.value);
+        // console.log('Changed option text ' + );
+            location.href='?tahun='+ $(this).find('option').filter(':selected').val();
+        });
+    </script>
 @endsection

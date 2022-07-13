@@ -22,6 +22,10 @@
     <link href="https://cdn.datatables.net/buttons/2.2.3/css/buttons.bootstrap5.min.css" rel="stylesheet">
     <!-- box icon -->
     <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.8.0/chart.min.js"></script>
+
     <title>SIPP | {{ $title }}</title>
 </head>
 
@@ -31,7 +35,7 @@
             <i class='bx bx-menu' id="header-toggle"></i>
         </div>
         <div class="welcome ms-auto"><strong>Welcome, {{ auth()->user()->nama }}</strong></div>
-        
+
         <div class="navbar-nav d-flex">
             <div class="nav-item text-nowrap">
                 <form action="/logout" method="post">
@@ -60,7 +64,8 @@
     {{-- PRIMARY --}}
 
     {{-- JQuery --}}
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+
     <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
     {{-- Datatables --}}
     <script src="https://cdn.datatables.net/1.12.1/js/dataTables.bootstrap5.min.js"></script>
@@ -75,6 +80,7 @@
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.2.3/js/buttons.colVis.min.js"></script>
+
     {{-- Stok Otomatis --}}
     <script type="text/javascript">
         $(".stok").keyup(function() {

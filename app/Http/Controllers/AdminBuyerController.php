@@ -107,7 +107,13 @@ class AdminBuyerController extends Controller
                     'jumlah'=>$penjualan_hariini,
                 ];
 
-                Penjualan::create($penjualan);
+                $cekPenjualan = Penjualan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+                if($cekPenjualan){
+                    Penjualan::where('id',$cekPenjualan->id)->update($penjualan);
+                }else{
+                    Penjualan::create($penjualan);
+                }
+
                 stokGenerate($dataBuyer->produk_id);
 
             }
