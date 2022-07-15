@@ -13,13 +13,16 @@ class AdminDashboardController extends Controller
 {
     public function index(Request $req )
     {
+        $tahun = date('Y');
+        if($req->tahun) $tahun = $req->tahun;
+
+
         $penjualan = Penjualan::sum('jumlah');
         $stok = Produk::sum('stok');
         $penghasilan = Buyer::where('status','terima')->sum('total_bayar');
         $diterima = Buyer::where('status','terima')->count();
         $ditolak = Buyer::where('status','tolak')->count();
         $diproses = Buyer::where('status','proses')->count();
-
 
         $penjualan = ($penjualan!=null)? $penjualan : 0;
         $stok = ($stok!=null)? $stok : 0;
@@ -28,9 +31,6 @@ class AdminDashboardController extends Controller
         $ditolak = ($ditolak!=null)? $ditolak : 0;
         $diproses = ($diproses!=null)? $diproses : 0;
 
-
-        $tahun = date('Y');
-        if($req->tahun) $tahun = $req->tahun;
         $data = DB::select("select * from bulanan where tahun = '".$tahun."'");
         $hasilPenjualan = [];
         $hasilPersediaan = [];

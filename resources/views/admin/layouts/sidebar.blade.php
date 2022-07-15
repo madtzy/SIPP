@@ -29,12 +29,12 @@
                     </a>
                     <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-dropdown py-2">
-                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/belum_diproses">Belum
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/belum_diproses">Belum
                                 Diproses</a>
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/terima">Di Proses</a>
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/terima">Di Proses</a>
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/tolak">Di Tolak</a>
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/tolak">Di Tolak</a>
                         </div>
                     </div>
                     <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/prediksi*') ? 'active' : '' }}"
