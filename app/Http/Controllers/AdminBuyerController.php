@@ -26,7 +26,8 @@ class AdminBuyerController extends Controller
     {
         return view('admin.buyers.index', [
             'buyers' => Buyer::latest()->where('status',$status)->get(),
-            'title' => 'Data Pemesan'
+            'title' => 'Data Pemesan',
+            'status' => $status
         ]);
     }
 
@@ -107,7 +108,7 @@ class AdminBuyerController extends Controller
                     'jumlah'=>$penjualan_hariini,
                 ];
 
-                $cekPenjualan = Penjualan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+                $cekPenjualan = Penjualan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$hari)->first();
                 if($cekPenjualan){
                     Penjualan::where('id',$cekPenjualan->id)->update($penjualan);
                 }else{
