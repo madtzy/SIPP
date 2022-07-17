@@ -14,13 +14,13 @@ class AdminBuyerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view('admin.buyers.index', [
-            'buyers' => Buyer::latest()->get(),
-            'title' => 'Data Pemesan'
-        ]);
-    }
+    // public function index()
+    // {
+    //     return view('admin.buyers.index', [
+    //         'buyers' => Buyer::latest()->get(),
+    //         'title' => 'Data Pemesan'
+    //     ]);
+    // }
 
     public function data($status)
     {
@@ -119,8 +119,8 @@ class AdminBuyerController extends Controller
 
             }
         }
-
-        return redirect('/admin/buyers')->with('success', 'Data Pemesanan Berhasil Diverifikasi');
+        return redirect($request->status == 'terima' ? 'admin/buyers/list/terima' : 'admin/buyers/list/tolak')->with('success', $request->status == "terima" ? 'Data Pemesanan Berhasil Diterima' : 'Data Pemesan Berhasil Ditolak');
+        // return redirect('/admin/buyers/list/belum_diproses')->with('success', $request->status == "terima" ? 'Data Pemesanan Berhasil Diterima' : 'Data Pemesan Berhasil Ditolak');
     }
 
     /**
