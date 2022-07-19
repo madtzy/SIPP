@@ -3,8 +3,8 @@
         <div>
             <li class="backgorund_logo">
                 <a href="#" class="nav__logo">
-                    <span class="text-dark fw-bold fs-5"><img src="/img/logo.jpg" alt="" class="logo">ADMIN |
-                        SIPP</span>
+                    <span class="text-dark fw-bold fs-5"><img src="/img/logo.jpg" alt=""
+                            class="logo">{{ Auth()->user()->is_admin == 1 ? 'ADMIN | SIPP' : 'KASIR | SIPP' }}</span>
                 </a>
             </li>
             <div class="nav__list">
@@ -21,20 +21,19 @@
                         class="nav__link text-white {{ Request::is('admin/stoks*') ? 'active' : '' }}">
                         <span class="nav__name fs-6"><i class='bx bx-sm bxs-customize me-3'></i>Data Stok</span>
                     </a>
-
                     <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/buyers*') ? 'active' : '' }}"
                         data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
                         aria-controls="collapse">
-                        <span class="nav__name fs-6"><i class='bx bx-sm bx-money-withdraw me-3'></i>Data Pemesan</span>
+                        <span class="nav__name fs-6"><i class='bx bx-sm bxs-shopping-bag me-3'></i>Data Pemesan</span>
                     </a>
                     <div id="collapse2" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                         <div class="bg-dropdown py-2">
                             <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/belum_diproses">Belum
                                 Diproses</a>
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/terima">Di Proses</a>
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/terima">Diterima</a>
                             <hr class="dropdown-divider">
-                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/tolak">Di Tolak</a>
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/tolak">Ditolak</a>
                         </div>
                     </div>
                     <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/prediksi*') ? 'active' : '' }}"
@@ -77,10 +76,22 @@
                         class="nav__link text-white {{ Request::is('admin/dashboard*') ? 'active' : '' }}">
                         <span class="nav__name fs-6"><i class="bx bx-sm bxs-dashboard me-3"></i>Dashboard</span>
                     </a>
-                    <a href="/admin/buyers"
-                        class="nav__link text-white {{ Request::is('admin/buyers*') ? 'active' : '' }}">
-                        <span class="nav__name fs-6"><i class='bx bx-sm bx-money-withdraw me-3'></i>Data Pemesan</span>
+                    <a class="nav__link text-white dropdown-bs-toggle {{ Request::is('admin/buyers*') ? 'active' : '' }}"
+                        data-bs-toggle="collapse" data-bs-target="#collapse2" aria-expanded="false"
+                        aria-controls="collapse">
+                        <span class="nav__name fs-6"><i class='bx bx-sm bxs-shopping-bag me-3'></i>Data Pemesan</span>
                     </a>
+                    <div id="collapse2" class="collapse" aria-labelledby="headingTwo"
+                        data-parent="#accordionSidebar">
+                        <div class="bg-dropdown py-2">
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/belum_diproses">Belum
+                                Diproses</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/terima">Diterima</a>
+                            <hr class="dropdown-divider">
+                            <a class="dropdown-item text-white ms-5" href="/admin/buyers/list/tolak">Ditolak</a>
+                        </div>
+                    </div>
                 @endif
             </div>
         </div>

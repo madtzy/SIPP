@@ -22,7 +22,7 @@ class AdminDashboardController extends Controller
         $penghasilan = Buyer::where('status','terima')->sum('total_bayar');
         $diterima = Buyer::where('status','terima')->count();
         $ditolak = Buyer::where('status','tolak')->count();
-        $diproses = Buyer::where('status','proses')->count();
+        $diproses = Buyer::where('status','belum_diproses')->count();
 
         $penjualan = ($penjualan!=null)? $penjualan : 0;
         $stok = ($stok!=null)? $stok : 0;

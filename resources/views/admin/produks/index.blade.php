@@ -27,7 +27,7 @@
                         {{-- loops --}}
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $produk->nama }}</td>
-                        <td>{{ $produk->harga }}</td>
+                        <td>Rp. {{ $produk->harga }}</td>
                         <td>{{ $produk->stok }}</td>
                         <td>
                             <a href="/admin/produks/{{ $produk->id }}" class="badge bg-success" data-bs-toggle="modal"

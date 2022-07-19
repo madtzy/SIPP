@@ -45,7 +45,6 @@ class AdminProdukController extends Controller
         $validatedData = $request->validate([
             'nama'          => 'required|max:255|unique:produks',
             'harga'         => 'required',
-            'stok'          => 'required',
             'keterangan'    => 'required|max:255',
             'gambar'        => 'required|image|file|max:1024'
         ]);
@@ -92,8 +91,6 @@ class AdminProdukController extends Controller
     public function update(Request $request, Produk $produk)
     {
         $rules = [
-            'harga'         => 'required',
-            'stok'          => 'required',
             'keterangan'    => 'required|max:255',
             'gambar'        => 'image|file|max:1024'
         ];
