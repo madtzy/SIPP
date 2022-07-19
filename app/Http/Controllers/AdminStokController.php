@@ -54,9 +54,9 @@ class AdminStokController extends Controller
         ]);
 
         $tanggal = $request->tanggal;
-        $tahun = date('Y',strtotime($tanggal));
-        $bulan = date('m',strtotime($tanggal));
-        $hari = date('d',strtotime($tanggal));
+        $tahun = (int) date('Y',strtotime($tanggal));
+        $bulan = (int) date('m',strtotime($tanggal));
+        $hari = (int) date('d',strtotime($tanggal));
         $stok = Stok::create($validatedData);
         if($stok){
             $stok_hariini = Stok::where('tanggal',$tanggal)->sum('stok');
@@ -141,9 +141,9 @@ class AdminStokController extends Controller
         ]);
 
         $tanggal = $request->tanggal;
-        $tahun = date('Y',strtotime($tanggal));
-        $bulan = date('m',strtotime($tanggal));
-        $hari = date('d',strtotime($tanggal));
+        $tahun = (int) date('Y',strtotime($tanggal));
+        $bulan = (int) date('m',strtotime($tanggal));
+        $hari = (int) date('d',strtotime($tanggal));
 
         $stok = Stok::where('id', $stok->id)
             ->update($validatedData);
