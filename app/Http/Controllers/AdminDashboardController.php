@@ -13,16 +13,34 @@ class AdminDashboardController extends Controller
 {
     public function index(Request $req )
     {
+
+        $bulanData = ["Januari","Februari","Maret","April","Mei","Juni","Juli","Agustus","September","Oktober","November","Desember"];
         $tahun = date('Y');
         if($req->tahun) $tahun = $req->tahun;
+        $bulan = null;
+        if($req->bulan) $bulan = $req->bulan;
 
 
-        $penjualan = Penjualan::where('tahun',$tahun)->sum('jumlah');
+        $penjualan = Penjualan::where('tahun',$tahun);
         $stok = Produk::sum('stok');
-        $penghasilan = Buyer::where('status','terima')->whereYear('tanggal',$tahun)->sum('total_bayar');
-        $diterima = Buyer::where('status','terima')->whereYear('tanggal',$tahun)->count();
-        $ditolak = Buyer::where('status','tolak')->whereYear('tanggal',$tahun)->count();
-        $diproses = Buyer::where('status','belum_diproses')->whereYear('tanggal',$tahun)->count();
+        $penghasilan = Buyer::where('status','terima')->whereYear('tanggal',$tahun);
+        $diterima = Buyer::where('status','terima')->whereYear('tanggal',$tahun);
+        $ditolak = Buyer::where('status','tolak')->whereYear('tanggal',$tahun);
+        $diproses = Buyer::where('status','belum_diproses')->whereYear('tanggal',$tahun);
+
+        if($bulan){
+            $penjualan = $penjualan->where('bulan',$bulan);
+            $penghasilan = $penghasilan->whereMonth('tanggal',$bulan);
+            $diterima = $diterima->whereMonth('tanggal',$bulan);
+            $ditolak = $ditolak->whereMonth('tanggal',$bulan);
+            $diproses = $diproses->whereMonth('tanggal',$bulan);
+        }
+
+        $penjualan = $penjualan->sum('jumlah');
+        $penghasilan = $penghasilan->sum('total_bayar');
+        $diterima = $diterima->count();
+        $ditolak = $ditolak->count();
+        $diproses = $diproses->count();
 
         $penjualan = ($penjualan!=null)? $penjualan : 0;
         $stok = ($stok!=null)? $stok : 0;
@@ -36,8 +54,8 @@ class AdminDashboardController extends Controller
         $hasilPersediaan = [];
         if($data){
             foreach($data as $i => $rec){
-                $hasilPenjualan[$rec->bulan] = $rec->penjualan;
-                $hasilPersediaan[$rec->bulan] = $rec->persediaan;
+                $hasilPenjualan[$rec->bulan-1] = $rec->penjualan;
+                $hasilPersediaan[$rec->bulan-1] = $rec->persediaan;
             }
         }
 
@@ -48,6 +66,7 @@ class AdminDashboardController extends Controller
             $dataPenjualan[] = (!empty($hasilPenjualan[$i]))? $hasilPenjualan[$i] : 0;
             $dataPersediaan[] = (!empty($hasilPersediaan[$i]))? $hasilPersediaan[$i] : 0;
         }
+
 
         $chartjs = app()->chartjs
         ->name('lineChartTest')
@@ -89,7 +108,9 @@ class AdminDashboardController extends Controller
             'ditolak' => $ditolak,
             'diproses' => $diproses,
             'tahun' => $tahun,
-            'chartjs'=>$chartjs
+            'bulan' => $bulan,
+            'bulanData'=> $bulanData,
+            'chartjs'=>$chartjs,
         ]);
     }
 }
