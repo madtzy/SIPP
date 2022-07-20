@@ -17,12 +17,12 @@ class AdminDashboardController extends Controller
         if($req->tahun) $tahun = $req->tahun;
 
 
-        $penjualan = Penjualan::sum('jumlah');
+        $penjualan = Penjualan::where('tahun',$tahun)->sum('jumlah');
         $stok = Produk::sum('stok');
-        $penghasilan = Buyer::where('status','terima')->sum('total_bayar');
-        $diterima = Buyer::where('status','terima')->count();
-        $ditolak = Buyer::where('status','tolak')->count();
-        $diproses = Buyer::where('status','belum_diproses')->count();
+        $penghasilan = Buyer::where('status','terima')->whereYear('tanggal',$tahun)->sum('total_bayar');
+        $diterima = Buyer::where('status','terima')->whereYear('tanggal',$tahun)->count();
+        $ditolak = Buyer::where('status','tolak')->whereYear('tanggal',$tahun)->count();
+        $diproses = Buyer::where('status','belum_diproses')->whereYear('tanggal',$tahun)->count();
 
         $penjualan = ($penjualan!=null)? $penjualan : 0;
         $stok = ($stok!=null)? $stok : 0;
@@ -52,7 +52,7 @@ class AdminDashboardController extends Controller
         $chartjs = app()->chartjs
         ->name('lineChartTest')
         ->type('line')
-        ->size(['width' => 400, 'height' => 150])
+        ->size(['width' => 400, 'height' => 100])
         ->labels(['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus','Oktober','November','Desember'])
         ->datasets([
             [

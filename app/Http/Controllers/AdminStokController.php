@@ -75,14 +75,14 @@ class AdminStokController extends Controller
                 'jumlah'=>$stok_hariini,
             ];
 
-            $cekKualitas = Kualitas::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            $cekKualitas = Kualitas::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$hari)->first();
             if($cekKualitas){
                 Kualitas::where('id',$cekKualitas->id)->update($kualitas);
             }else{
                 Kualitas::create($kualitas);
             }
 
-            $cekPersediaan = Persediaan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            $cekPersediaan = Persediaan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$hari)->first();
             if($cekPersediaan){
                 Persediaan::where('id',$cekPersediaan->id)->update($persediaan);
             }else{
@@ -164,14 +164,14 @@ class AdminStokController extends Controller
                 'jumlah'=>$stok_hariini,
             ];
 
-            $cekKualitas = Kualitas::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            $cekKualitas = Kualitas::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$hari)->first();
             if($cekKualitas){
                 Kualitas::where('id',$cekKualitas->id)->update($kualitas);
             }else{
                 Kualitas::create($kualitas);
             }
 
-            $cekPersediaan = Persediaan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$tanggal)->first();
+            $cekPersediaan = Persediaan::where('tahun',$tahun)->where('bulan',$bulan)->where('tanggal',$hari)->first();
             if($cekPersediaan){
                 Persediaan::where('id',$cekPersediaan->id)->update($persediaan);
             }else{
