@@ -97,9 +97,9 @@ class AdminBuyerController extends Controller
             if($request->status=="terima"){
                 $penjualan_hariini = Buyer::where('tanggal',$dataBuyer->tanggal)->where('status','terima')->sum('jumlah');
                 $tanggal = $dataBuyer->tanggal;
-                $tahun = date('Y',strtotime($tanggal));
-                $bulan = date('m',strtotime($tanggal));
-                $hari = date('d',strtotime($tanggal));
+                $tahun = (int) date('Y',strtotime($tanggal));
+                $bulan = (int) date('m',strtotime($tanggal));
+                $hari = (int) date('d',strtotime($tanggal));
 
                 $penjualan = [
                     'tahun'=>$tahun,
